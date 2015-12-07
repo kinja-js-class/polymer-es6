@@ -236,8 +236,12 @@ gulp.task('clean', function() {
   return del(['.tmp', dist()]);
 });
 
+gulp.task('clean-serve', ['clean'], function () {
+  runSequence('serve');
+});
+
 // Watch files for changes & reload
-gulp.task('serve', ['styles', 'elements', 'images', 'js'], function() {
+gulp.task('serve', ['lint', 'styles', 'elements', 'images', 'js'], function() {
   browserSync({
     port: 5000,
     notify: false,
